@@ -9,3 +9,8 @@ export const getProjectById = async (id) => {
   const response = await api.get(`/projects/${id}`);
   return response.data;
 };
+
+export const closeProject = async (id) => {
+  const response = await api.patch(`/projects/${id}/close`);
+  return response.data;
+};
