@@ -1,5 +1,4 @@
 import { createContext, useState, useEffect } from "react";
-import api from "../services/api";
 
 export const AuthContext = createContext();
 
@@ -10,20 +9,18 @@ export const AuthProvider = ({ children }) => {
   // Load user from localStorage on app start
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
+
     if (storedUser) {
       setUser(JSON.parse(storedUser));
     }
+
     setLoading(false);
   }, []);
 
-  const login = async (credentials) => {
-    const response = await api.post("/auth/login", credentials);
-
-    const { token, user } = response.data;
-
+  // Now login only sets state (NO API CALL HERE)
+  const login = ({ token, user }) => {
     localStorage.setItem("token", token);
     localStorage.setItem("user", JSON.stringify(user));
-
     setUser(user);
   };
 

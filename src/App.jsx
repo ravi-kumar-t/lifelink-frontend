@@ -1,5 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 const Home = () => <h1>Home</h1>;
 const Login = () => <h1>Login Page</h1>;
