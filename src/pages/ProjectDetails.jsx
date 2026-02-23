@@ -9,7 +9,8 @@ import {
 
 import {
   respondToProject,
-  getResponsesForProject
+  getResponsesForProject,
+  updateTaskStatus
 } from "../services/taskService";
 
 import Loader from "../components/Loader";
@@ -30,7 +31,6 @@ const ProjectDetails = () => {
         const projectData = await getProjectById(id);
         setProject(projectData);
 
-        // If Admin, also fetch donor responses
         if (user?.role === "Admin") {
           const responseData = await getResponsesForProject(id);
           setResponses(responseData);
@@ -72,6 +72,25 @@ const ProjectDetails = () => {
       );
     } finally {
       setActionLoading(false);
+    }
+  };
+
+  const handleStatusUpdate = async (taskId, status) => {
+    try {
+      await updateTaskStatus(taskId, status);
+      toast.success(`Donor ${status} successfully`);
+
+      // Update UI instantly
+      setResponses((prev) =>
+        prev.map((res) =>
+          res._id === taskId ? { ...res, status } : res
+        )
+      );
+
+    } catch (error) {
+      toast.error(
+        error.response?.data?.message || "Failed to update status"
+      );
     }
   };
 
@@ -122,6 +141,27 @@ const ProjectDetails = () => {
               <p>Email: {res.donorId?.email}</p>
               <p>Blood Group: {res.donorId?.bloodGroup}</p>
               <p>Status: {res.status}</p>
+
+              {res.status === "Pending" && (
+                <>
+                  <button
+                    onClick={() =>
+                      handleStatusUpdate(res._id, "Approved")
+                    }
+                  >
+                    Approve
+                  </button>
+
+                  <button
+                    onClick={() =>
+                      handleStatusUpdate(res._id, "Rejected")
+                    }
+                    style={{ marginLeft: "10px" }}
+                  >
+                    Reject
+                  </button>
+                </>
+              )}
             </div>
           ))}
         </div>
