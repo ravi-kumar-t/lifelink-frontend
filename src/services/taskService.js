@@ -6,3 +6,8 @@ export const respondToProject = async (projectId) => {
   });
   return response.data;
 };
+
+export const getResponsesForProject = async (projectId) => {
+  const response = await api.get(`/tasks/project/${projectId}`);
+  return response.data;
+};
