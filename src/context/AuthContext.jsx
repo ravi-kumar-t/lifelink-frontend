@@ -8,14 +8,19 @@ export const AuthProvider = ({ children }) => {
 
   // Load user from localStorage on app start
   useEffect(() => {
-    const storedUser = localStorage.getItem("user");
+  const storedUser = localStorage.getItem("user");
 
-    if (storedUser) {
+  if (storedUser && storedUser !== "undefined") {
+    try {
       setUser(JSON.parse(storedUser));
+    } catch (error) {
+      console.error("Invalid user data in localStorage");
+      localStorage.removeItem("user");
     }
+  }
 
-    setLoading(false);
-  }, []);
+  setLoading(false);
+}, []);
 
   // Now login only sets state (NO API CALL HERE)
   const login = ({ token, user }) => {

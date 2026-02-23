@@ -14,3 +14,8 @@ export const closeProject = async (id) => {
   const response = await api.patch(`/projects/${id}/close`);
   return response.data;
 };
+
+export const createProject = async (data) => {
+  const response = await api.post("/projects", data);
+  return response.data;
+};

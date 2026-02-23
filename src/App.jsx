@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Navbar from "./components/Navbar";
-
+import CreateProject from "./pages/CreateProject";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
@@ -36,6 +36,15 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+        <Route
+  path="/create-project"
+  element={
+    <ProtectedRoute adminOnly={true}>
+      <CreateProject />
+    </ProtectedRoute>
+  }
+/>
       </Routes>
     </>
   );
