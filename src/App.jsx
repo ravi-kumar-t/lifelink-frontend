@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import ProjectDetails from "./pages/ProjectDetails";
+import Profile from "./pages/Profile";
 
 const Home = () => <h1>LifeLink Home</h1>;
 
@@ -38,13 +39,23 @@ function App() {
         />
 
         <Route
-  path="/create-project"
-  element={
-    <ProtectedRoute adminOnly={true}>
-      <CreateProject />
-    </ProtectedRoute>
-  }
-/>
+          path="/create-project"
+          element={
+          <ProtectedRoute adminOnly={true}>
+            <CreateProject />
+          </ProtectedRoute>
+        }
+        />
+
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
+
       </Routes>
     </>
   );
