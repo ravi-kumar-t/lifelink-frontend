@@ -1,0 +1,145 @@
+.home {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+.home-hero {
+  min-height: 55vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px 0 80px;
+  max-width: 700px;
+  animation: fadeIn 0.6s ease;
+}
+
+.home-hero-eyebrow {
+  margin-bottom: 24px;
+}
+
+.home-hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(52px, 8vw, 96px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  color: var(--text);
+  margin-bottom: 24px;
+}
+
+.home-hero-accent {
+  color: var(--red);
+  position: relative;
+  display: inline-block;
+}
+
+.home-hero-accent::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--red);
+  border-radius: 2px;
+  opacity: 0.5;
+}
+
+.home-hero-desc {
+  font-size: 18px;
+  color: var(--text-muted);
+  max-width: 500px;
+  line-height: 1.7;
+  margin-bottom: 40px;
+}
+
+.home-hero-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.home-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 80px;
+}
+
+.home-stat {
+  text-align: center;
+  padding: 32px 24px;
+  border: 1px solid var(--border-subtle);
+  animation: fadeIn 0.5s ease both;
+}
+
+.home-stat .stat-value {
+  font-size: 40px;
+  color: var(--red-bright);
+}
+
+.home-how {
+  margin-top: 40px;
+}
+
+.home-how .section-title {
+  margin-bottom: 32px;
+}
+
+.home-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.home-step {
+  padding: 32px 28px;
+  border: 1px solid var(--border-subtle);
+  position: relative;
+  overflow: hidden;
+}
+
+.home-step::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--red) 0%, transparent 100%);
+}
+
+.home-step-num {
+  font-family: var(--font-display);
+  font-size: 48px;
+  font-weight: 800;
+  color: var(--red-muted);
+  opacity: 0.5;
+  line-height: 1;
+  margin-bottom: 16px;
+  letter-spacing: -0.04em;
+}
+
+.home-step h3 {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+
+.home-step p {
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .home-stats {
+    grid-template-columns: 1fr;
+  }
+  .home-steps {
+    grid-template-columns: 1fr;
+  }
+}
